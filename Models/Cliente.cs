@@ -19,4 +19,24 @@ public class Cliente
     public DateTime DataAtualizacao { get; set; }
     public DateTime DataDelecao { get; set; }
     public bool Ativo { get; set; }
+
+    public Cliente Inserir(string Nome, string Sobrenome, int Idade, char Sexo, DateOnly DataNascimento)
+    {
+        var novoCliente = new Cliente()
+        {
+            Nome = Nome,
+            Sobrenome = Sobrenome,
+            Idade = Idade,
+            Sexo = Sexo,
+            DataNascimento = DataNascimento,
+            DataCriacao = DateOnly.FromDateTime(DateTime.Now), // DateTime não possui o método ToDateOnly() padrão, para converter precisa ser nessa estrutura;
+            Ativo = true
+        };
+
+        return novoCliente;
+    }
+    public override string ToString() // estilização do retorno do cliente
+    {
+        return $"Nome: {Nome} {Sobrenome} | Idade: {Idade} | Sexo: {Sexo} | Data de Nascimento: {DataNascimento} | Data de criação do cadastro: {DataCriacao} | Status: {Ativo}";
+    }
 }
