@@ -12,4 +12,6 @@ public class Endereco
     public DateTime DataAtualizacao { get; set; }
     public DateTime DataDelecao { get; set; }
     public bool Ativo { get; set; }
+    public Guid ClienteId { get; set; }
+    public Cliente Cliente { get; set; }
 }
