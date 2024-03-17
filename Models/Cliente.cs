@@ -20,7 +20,7 @@ public class Cliente
     public DateTime DataDelecao { get; set; }
     public bool Ativo { get; set; }
 
-    public Cliente Inserir(string Nome, string Sobrenome, int Idade, char Sexo, DateOnly DataNascimento)
+    public Cliente Inserir(string nome, string sobrenome, int idade, char sexo, DateOnly dataNascimento)
     {
         var novoCliente = new Cliente()
         {
