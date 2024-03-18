@@ -24,11 +24,11 @@ public class Cliente
     {
         var novoCliente = new Cliente()
         {
-            Nome = Nome,
-            Sobrenome = Sobrenome,
-            Idade = Idade,
-            Sexo = Sexo,
-            DataNascimento = DataNascimento,
+            Nome = nome,
+            Sobrenome = sobrenome,
+            Idade = idade,
+            Sexo = sexo,
+            DataNascimento = dataNascimento,
             DataCriacao = DateOnly.FromDateTime(DateTime.Now), // DateTime não possui o método ToDateOnly() padrão, para converter precisa ser nessa estrutura;
             Ativo = true
         };
