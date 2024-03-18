@@ -14,4 +14,24 @@ public class Endereco
     public bool? Ativo { get; set; }
     public Guid ClienteId { get; set; }
     public Cliente Cliente { get; set; }
+
+    public Endereco Inserir(string logradouro, int numero, string bairro, string cidade, string uf)
+    {
+        var novoEndereco = new Endereco()
+        {
+            Logradouro = logradouro,
+            Numero = numero,
+            Bairro = bairro,
+            Cidade = cidade,
+            UF = uf,
+            DataCriacao = DateTime.Now,
+            Ativo = true
+        };
+
+        return novoEndereco;
+    }
+    public override string ToString()
+    {
+        return $"Logradouro: {Logradouro}, {Numero} - {Bairro}, {Cidade} - {UF} | Data de criação do cadastro: {DataCriacao} | Status: {Ativo}";
+    }
 }
