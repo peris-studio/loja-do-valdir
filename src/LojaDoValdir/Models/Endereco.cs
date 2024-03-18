@@ -1,4 +1,4 @@
-namespace LojaDoValdir;
+namespace LojaDoValdir.Models;
 
 public class Endereco
 {

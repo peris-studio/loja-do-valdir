@@ -1,4 +1,4 @@
-namespace LojaDoValdir;
+namespace LojaDoValdir.Models;
 
 public class Cliente
 {
@@ -29,7 +29,7 @@ public class Cliente
             Idade = idade,
             Sexo = sexo,
             DataNascimento = dataNascimento,
-            DataCriacao = DateOnly.FromDateTime(DateTime.Now), // DateTime não possui o método ToDateOnly() padrão, para converter precisa ser nessa estrutura;
+            DataCriacao = DateTime.Now,
             Ativo = true
         };
 
