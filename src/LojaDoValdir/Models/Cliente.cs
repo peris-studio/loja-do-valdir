@@ -1,4 +1,4 @@
-namespace LojaDoValdir;
+namespace LojaDoValdir.Models;
 
 public class Cliente
 {
@@ -29,7 +29,7 @@ public class Cliente
             Idade = idade,
             Sexo = sexo,
             DataNascimento = dataNascimento,
-            DataCriacao = DateTime.Now, // está dando erro com DateOnly
+            DataCriacao = DateTime.Now,
             Ativo = true
         };
 
