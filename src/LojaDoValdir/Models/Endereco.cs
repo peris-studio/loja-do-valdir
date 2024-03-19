@@ -4,7 +4,7 @@ public class Endereco
 {
     public Guid Id { get; set; }
     public string Logradouro { get; set; }
-    public int Numero { get; set; }
+    public string Numero { get; set; }
     public string Bairro { get; set; }
     public string Cidade { get; set; }
     public string UF { get; set; }
@@ -15,7 +15,7 @@ public class Endereco
     public Guid ClienteId { get; set; }
     public Cliente Cliente { get; set; }
 
-    public Endereco Inserir(string logradouro, int numero, string bairro, string cidade, string uf)
+    public Endereco Inserir(string logradouro, string numero, string bairro, string cidade, string uf)
     {
         var novoEndereco = new Endereco()
         {
