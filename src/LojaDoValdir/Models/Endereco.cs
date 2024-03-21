@@ -11,7 +11,7 @@ public class Endereco
     public DateTime DataCriacao { get; set; }
     public DateTime? DataAtualizacao { get; set; }
     public DateTime? DataDelecao { get; set; }
-    public bool? Ativo { get; set; }
+    public bool Ativo { get; set; }
     public Guid ClienteId { get; set; }
     public Cliente Cliente { get; set; }
 
@@ -32,6 +32,7 @@ public class Endereco
     }
     public override string ToString()
     {
-        return $"Logradouro: {Logradouro}, {Numero} - {Bairro}, {Cidade} - {UF} | Data de criação do cadastro: {DataCriacao} | Status: {Ativo}";
+        string status = Ativo ? "Sim": "Não";
+        return $"Logradouro: {Logradouro}, {Numero} - {Bairro}, {Cidade} - {UF} | Data de criação do cadastro: {DataCriacao} | Ativo: {status}";
     }
 }

@@ -16,8 +16,8 @@ public class Cliente
     public char Sexo { get; set; }
     public DateOnly DataNascimento { get; set; } // DateOnly é uma nova estrutura apropriada para representar somente datas, independente de horário
     public DateTime DataCriacao { get; set; }
-    public DateTime DataAtualizacao { get; set; }
-    public DateTime DataDelecao { get; set; }
+    public DateTime? DataAtualizacao { get; set; }
+    public DateTime? DataDelecao { get; set; }
     public bool Ativo { get; set; }
 
     public Cliente Inserir(string nome, string sobrenome, int idade, char sexo, DateOnly dataNascimento)
@@ -37,6 +37,7 @@ public class Cliente
     }
     public override string ToString() // estilização do retorno do cliente
     {
-        return $"Nome: {Nome} {Sobrenome} | Idade: {Idade} | Sexo: {Sexo} | Data de Nascimento: {DataNascimento} | Data de criação do cadastro: {DataCriacao} | Status: {Ativo}";
+        string status = Ativo ? "Sim" : "Não";
+        return $"Nome: {Nome} {Sobrenome} | Idade: {Idade} | Sexo: {Sexo} | Data de Nascimento: {DataNascimento} | Data de criação do cadastro: {DataCriacao} | Ativo: {status} ";
     }
 }
