@@ -28,10 +28,16 @@ public class Contato
 
         return novoContato;
     }
+    
+    // converter resposta do usuário para bool
+    public static bool StringParaBool(string telefonePrincipal)
+    {
+        return telefonePrincipal.ToLower() == "sim";
+    }
 
     public override string ToString()
     {
-        string contatoPrincipal = TelefonePrincipal ? "Sim" : "Não";
+        string contatoPrincipal = TelefonePrincipal ? "Sim" : "Não".ToLower();
         string status = Ativo ? "Sim" : "Não";
         return $"DDI: {CodigoDDI} | DDD: {CodigoDDD} | Telefone/Celular: {CodigoTelefone} | Telefone/Celular principal? {contatoPrincipal} | Data de criação de cadastro: {DataCriacao} | Ativo: {status}";
     }
