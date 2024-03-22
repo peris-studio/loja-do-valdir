@@ -37,7 +37,7 @@ public class Contato
 
     public override string ToString()
     {
-        string contatoPrincipal = TelefonePrincipal ? "Sim" : "Não".ToLower();
+        string contatoPrincipal = TelefonePrincipal ? "Sim".ToLower() : "Não".ToLower();
         string status = Ativo ? "Sim" : "Não";
         return $"DDI: {CodigoDDI} | DDD: {CodigoDDD} | Telefone/Celular: {CodigoTelefone} | Telefone/Celular principal? {contatoPrincipal} | Data de criação de cadastro: {DataCriacao} | Ativo: {status}";
     }

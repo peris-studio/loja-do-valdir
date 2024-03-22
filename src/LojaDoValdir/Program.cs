@@ -65,10 +65,17 @@ class Program
 
         Console.Write("É o seu meio de contato principal? Digite sim ou não: ");
         string telefonePrincipal = Console.ReadLine();
-        bool principal = Contato.StringParaBool(telefonePrincipal);
-
-        contato1 = contato1.Inserir(codigoDDI, codigoDDD, codigoTelefone, principal);
-        Console.WriteLine("");
+        if (telefonePrincipal == "sim" || telefonePrincipal == "não")
+        {
+            bool principal = Contato.StringParaBool(telefonePrincipal);
+            contato1 = contato1.Inserir(codigoDDI, codigoDDD, codigoTelefone, principal);
+            Console.WriteLine("");
+        }
+        else
+        {
+            Console.WriteLine("Resposta inválida.");
+            return;
+        }
 
 
         // Endereço
