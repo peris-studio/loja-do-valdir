@@ -1,4 +1,5 @@
 namespace LojaDoValdir.Models;
+
 using LojaDoValdir.Enums;
 
 public class Pedido
