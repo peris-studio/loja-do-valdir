@@ -52,4 +52,9 @@ public class Item
 
         return item;
     }
+
+    public override string ToString() // estilização do retorno do cliente
+    {
+        return $"Mercadoria: {Nome} | Descrição: {Descricao} | R${Preco} | Variedade: {TipoItem} | Quantidade Disponível: {Quantidade} | Ativo: {Ativo}";
+    }
 }
