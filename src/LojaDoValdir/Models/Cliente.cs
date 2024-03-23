@@ -1,5 +1,4 @@
-namespace LojaDoValdir.Models;
-
+using LojaDoValdir.Models;
 public class Cliente
 {
     public Guid Id { get; set; }

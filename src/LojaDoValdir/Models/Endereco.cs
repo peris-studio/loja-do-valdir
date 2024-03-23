@@ -1,4 +1,4 @@
-namespace LojaDoValdir.Models;
+using LojaDoValdir.Models;
 
 public class Endereco
 {
@@ -32,7 +32,7 @@ public class Endereco
     }
     public override string ToString()
     {
-        string status = Ativo ? "Sim": "Não";
+        string status = Ativo ? "Sim" : "Não";
         return $"Logradouro: {Logradouro}, {Numero} - {Bairro}, {Cidade} - {UF} | Data de criação do cadastro: {DataCriacao} | Ativo: {status}";
     }
 }
