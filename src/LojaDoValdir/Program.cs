@@ -1,4 +1,5 @@
-﻿namespace LojaDoValdir.Models;
+﻿namespace LojaDoValdir;
+using LojaDoValdir.Models;
 
 class Program
 {

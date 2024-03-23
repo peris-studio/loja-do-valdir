@@ -1,5 +1,5 @@
 namespace LojaDoValdir.Models;
-using Enums.Models;
+using LojaDoValdir.Enums;
 
 public class Pedido
 {
@@ -33,16 +33,17 @@ public class Pedido
         return novoPedido;
     }
 
-    public Pedido Atualizar(Pedido pedido, Guid enderecoId, Guid contatoId, StatusPedido status, DateOnly previsaoEntrega)
+    public Pedido Atualizar(Pedido pedido, Guid enderecoId, Guid contatoId, DateOnly previsaoEntrega, StatusPedido status)
     {
         pedido.EnderecoId = enderecoId;
         pedido.ContatoId = contatoId;
+        pedido.PrevisaoEntrega = previsaoEntrega;
         pedido.Status = status;
         pedido.DataAtualizacao = DateTime.Now;
         return pedido;
     }
 
-    public Pedido Remover(Pedido pedido, Guid id)
+    public Pedido Remover(Pedido pedido)
     {
         pedido.DataDelecao = DateTime.Now;
         pedido.Ativo = false;

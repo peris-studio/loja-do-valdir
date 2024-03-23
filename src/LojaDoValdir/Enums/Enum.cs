@@ -1,4 +1,4 @@
-namespace Enums.Models;
+namespace LojaDoValdir.Enums;
 
 public enum StatusPedido
 {
