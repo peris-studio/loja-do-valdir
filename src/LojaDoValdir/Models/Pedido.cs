@@ -41,6 +41,7 @@ public class Pedido
         pedido.PrevisaoEntrega = previsaoEntrega;
         pedido.Status = status;
         pedido.DataAtualizacao = DateTime.Now;
+        
         return pedido;
     }
 
@@ -49,6 +50,7 @@ public class Pedido
         pedido.DataDelecao = DateTime.Now;
         pedido.Ativo = false;
         pedido.Status = StatusPedido.Cancelado;
+
         return pedido;
     }
 
