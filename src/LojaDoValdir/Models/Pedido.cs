@@ -41,7 +41,7 @@ public class Pedido
         pedido.PrevisaoEntrega = previsaoEntrega;
         pedido.Status = status;
         pedido.DataAtualizacao = DateTime.Now;
-        
+
         return pedido;
     }
 
@@ -56,6 +56,6 @@ public class Pedido
 
     public override string ToString() // estilização do retorno do cliente
     {
-        return $"Cliente: {ClienteId} | Endereço: {EnderecoId} | Contato: {ContatoId} | Previsão de entrega: {PrevisaoEntrega} | Data de criação: {DataCriacao} | Status: Ativo";
+        return $"Cliente: {ClienteId} | Endereço: {EnderecoId} | Contato: {ContatoId} | Previsão de entrega: {PrevisaoEntrega} | Data de criação: {DataCriacao} | Status: {Status}";
     }
 }
