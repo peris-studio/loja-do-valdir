@@ -32,7 +32,6 @@ public class PedidoItem
     {
         pedidoItem.Preco = preco;
         pedidoItem.DataAtualizacao = DateTime.Now;
-        pedidoItem.Ativo = true;
 
         return pedidoItem;
     }
