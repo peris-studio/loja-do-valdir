@@ -17,6 +17,8 @@ public class Pedido
     public Endereco Endereco { get; set; }
     public Guid ContatoId { get; set; }
     public Contato Contato { get; set; }
+    public Guid UsuarioId { get; set; }
+    public Usuario Usuario { get; set; }
 
 
     public Pedido Inserir(Guid clienteId, Guid enderecoId, Guid contatoId, DateOnly previsaoEntrega)
