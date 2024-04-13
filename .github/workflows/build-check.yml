@@ -15,15 +15,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v2
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.
+          dotnet-version: 8.0.x
 
       - name: Restore Dependencies
         run: dotnet restore
 
       - name: Build Application
-        run: dotnet build --configuration Release
+        run: dotnet build --configuration Release --no-restore
