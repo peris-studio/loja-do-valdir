@@ -14,38 +14,56 @@ public class Usuario
     public DateTime DataDelecao { get; set; }
     public bool Ativo { get; set; }
 
-    public Usuario Inserir(string nome, string email, string senha, TipoUsuario tipoUsuario)
+    public static Usuario Inserir(string nome, string email, string senha)
     {
         var novoUsuario = new Usuario()
         {
+            Id = Guid.NewGuid(),
             Nome = nome,
             Email = email,
             Senha = senha,
-            TipoUsuario = tipoUsuario,
+            TipoUsuario = TipoUsuario.Usuario,
             DataCriacao = DateTime.Now,
             Ativo = true
         };
         return novoUsuario;
     }
 
-    public Usuario Atualizar(Usuario usuario, string nome, string email, string senha, TipoUsuario tipoUsuario)
+    public static Usuario Atualizar(Usuario usuario, string nome, string email, string senha, TipoUsuario tipoUsuario)
     {
-        usuario.Nome = nome;
-        usuario.Email = email;
-        usuario.Senha = senha;
-        usuario.TipoUsuario = tipoUsuario;
-        usuario.DataAtualizacao = DateTime.Now;
-        usuario.Ativo = true;
+        if (usuario == null)
+        {
+            throw new ArgumentNullException(nameof(usuario), "O usuário não pode ser nulo");
+        }
 
-        return usuario;
+        else
+        {
+            usuario.Nome = nome;
+            usuario.Email = email;
+            usuario.Senha = senha;
+            usuario.TipoUsuario = tipoUsuario;
+            usuario.DataAtualizacao = DateTime.Now;
+            usuario.Ativo = true;
+
+            return usuario;
+        }
     }
 
-    public Usuario Remover(Usuario usuario)
+    public static Usuario Remover(Usuario usuario)
     {
-        usuario.DataDelecao = DateTime.Now;
-        usuario.Ativo = false;
+        if (usuario == null)
+        {
+            throw new ArgumentNullException(nameof(usuario), "O usuário não pode ser nulo");
+        }
 
-        return usuario;
+        else
+        {
+            usuario.TipoUsuario = TipoUsuario.Usuario;
+            usuario.DataDelecao = DateTime.Now;
+            usuario.Ativo = false;
+
+            return usuario;
+        }
     }
 
     public override string ToString()
