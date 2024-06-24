@@ -21,13 +21,15 @@ public class Pedido
     public Usuario Usuario { get; set; }
 
 
-    public Pedido Inserir(Guid clienteId, Guid enderecoId, Guid contatoId, DateOnly previsaoEntrega)
+    public static Pedido Inserir(Guid clienteId, Guid enderecoId, Guid contatoId, Guid usuarioId, DateOnly previsaoEntrega)
     {
         var novoPedido = new Pedido()
         {
+            Id = Guid.NewGuid(),
             ClienteId = clienteId,
             EnderecoId = enderecoId,
             ContatoId = contatoId,
+            UsuarioId = usuarioId,
             PrevisaoEntrega = previsaoEntrega,
             Status = StatusPedido.Criado,
             DataCriacao = DateTime.Now,
@@ -36,24 +38,40 @@ public class Pedido
         return novoPedido;
     }
 
-    public Pedido Atualizar(Pedido pedido, Guid enderecoId, Guid contatoId, DateOnly previsaoEntrega, StatusPedido status)
+    public static Pedido Atualizar(Pedido pedido, Guid enderecoId, Guid contatoId, DateOnly previsaoEntrega, StatusPedido status)
     {
-        pedido.EnderecoId = enderecoId;
-        pedido.ContatoId = contatoId;
-        pedido.PrevisaoEntrega = previsaoEntrega;
-        pedido.Status = status;
-        pedido.DataAtualizacao = DateTime.Now;
+        if (pedido == null)
+        {
+            throw new ArgumentNullException(nameof(pedido), "O pedido não pode ser nulo");
+        }
 
-        return pedido;
+        else
+        {
+            pedido.EnderecoId = enderecoId;
+            pedido.ContatoId = contatoId;
+            pedido.PrevisaoEntrega = previsaoEntrega;
+            pedido.Status = status;
+            pedido.DataAtualizacao = DateTime.Now;
+
+            return pedido;
+        }
     }
 
-    public Pedido Remover(Pedido pedido)
+    public static Pedido Remover(Pedido pedido)
     {
-        pedido.DataDelecao = DateTime.Now;
-        pedido.Ativo = false;
-        pedido.Status = StatusPedido.Cancelado;
+        if (pedido == null)
+        {
+            throw new ArgumentNullException(nameof(pedido), "O pedido não pode ser nulo");
+        }
 
-        return pedido;
+        else
+        {
+            pedido.DataDelecao = DateTime.Now;
+            pedido.Ativo = false;
+            pedido.Status = StatusPedido.Cancelado;
+
+            return pedido;
+        }
     }
 
     public override string ToString() // estilização do retorno do cliente

@@ -6,55 +6,78 @@ public class Item
 {
     public Guid Id { get; set; }
     public string Nome { get; set; }
+    public string Peso { get; set; }
     public string Descricao { get; set; }
     public double Preco { get; set; }
     public TipoItem TipoItem { get; set; }
-    public bool? ItemEmEstoque { get; set; }
-    public int Quantidade { get; set; }
+    public bool ItemEmEstoque { get; set; }
+    public int QuantidadeUnidade { get; set; }
+    public int QuantidadeFardo { get; set; }
     public DateTime DataCriacao { get; set; }
     public DateTime DataAtualizacao { get; set; }
     public DateTime DataDelecao { get; set; }
     public bool Ativo { get; set; }
 
-    public Item Inserir(string nome, string descricao, double preco, TipoItem tipoItem, bool itemEmEstoque, int quantidade)
+    public static Item Inserir(string nome, string peso, string descricao, double preco, TipoItem tipoItem, bool itemEmEstoque, int quantidadeUnidade, int quantidadeFardo)
     {
         var novoItem = new Item()
         {
+            Id = Guid.NewGuid(),
             Nome = nome,
+            Peso = peso,
             Descricao = descricao,
-            TipoItem = tipoItem,
             Preco = preco,
+            TipoItem = tipoItem,
             ItemEmEstoque = itemEmEstoque,
-            Quantidade = quantidade,
+            QuantidadeUnidade = quantidadeUnidade,
+            QuantidadeFardo = quantidadeFardo,
             DataCriacao = DateTime.Now,
             Ativo = true,
         };
         return novoItem;
     }
 
-    public Item Atualizar(Item item, string nome, string descricao, double preco, TipoItem tipoItem, int quantidade)
+    public static Item Atualizar(Item item, string nome, string peso, string descricao, double preco, TipoItem tipoItem, bool itemEmEstoque, int quantidadeUnidade, int quantidadeFardo)
     {
-        item.Nome = nome;
-        item.Descricao = descricao;
-        item.Preco = preco;
-        item.TipoItem = tipoItem;
-        item.Quantidade = quantidade;
-        item.DataAtualizacao = DateTime.Now;
-        item.Ativo = true;
+        if (item == null)
+        {
+            throw new ArgumentNullException(nameof(item), "O item não pode ser nulo");
+        }
 
-        return item;
+        else
+        {
+            item.Nome = nome;
+            item.Peso = peso;
+            item.Descricao = descricao;
+            item.Preco = preco;
+            item.TipoItem = tipoItem;
+            item.ItemEmEstoque = itemEmEstoque;
+            item.QuantidadeUnidade = quantidadeUnidade;
+            item.QuantidadeFardo = quantidadeFardo;
+            item.DataAtualizacao = DateTime.Now;
+
+            return item;
+        }
     }
 
-    public Item Remover(Item item)
+    public static Item Remover(Item item)
     {
-        item.DataDelecao = DateTime.Now;
-        item.Ativo = false;
+        if (item == null)
+        {
+            throw new ArgumentNullException(nameof(item), "O item não pode ser nulo");
+        }
 
-        return item;
+        else
+        {
+            item.DataDelecao = DateTime.Now;
+            item.Ativo = false;
+
+            return item;
+        }
     }
 
     public override string ToString() // estilização do retorno do cliente
     {
-        return $"Mercadoria: {Nome} | Descrição: {Descricao} | R${Preco} | Variedade: {TipoItem} | Quantidade Disponível: {Quantidade} | Ativo: {Ativo}";
+        return $"Mercadoria: {Nome} | Peso: {Peso} | Descrição: {Descricao} | R${Preco} | Variedade: {TipoItem} | Quantidade Disponível (unidade): {QuantidadeUnidade} | Fardo: {QuantidadeFardo} |Ativo: {Ativo}";
     }
 }

@@ -1,4 +1,5 @@
 namespace LojaDoValdir.Models;
+using LojaDoValdir.Enums;
 public class Cliente
 {
     public Guid Id { get; set; }
@@ -19,10 +20,11 @@ public class Cliente
     public DateTime? DataDelecao { get; set; }
     public bool Ativo { get; set; }
 
-    public Cliente Inserir(string nome, string sobrenome, int idade, char sexo, DateOnly dataNascimento)
+    public static Cliente Inserir(string nome, string sobrenome, int idade, char sexo, DateOnly dataNascimento)
     {
         var novoCliente = new Cliente()
         {
+            Id = Guid.NewGuid(),
             Nome = nome,
             Sobrenome = sobrenome,
             Idade = idade,
@@ -34,6 +36,43 @@ public class Cliente
 
         return novoCliente;
     }
+
+    public static Cliente Atualizar(Cliente cliente, string nome, string sobrenome, int idade, char sexo, DateOnly dataNascimento)
+    {
+        if (cliente == null)
+        {
+            throw new ArgumentNullException(nameof(cliente), "O cliente não pode ser nulo");
+        }
+
+        else
+        {
+            cliente.Nome = nome;
+            cliente.Sobrenome = sobrenome;
+            cliente.Idade = idade;
+            cliente.Sexo = sexo;
+            cliente.DataNascimento = dataNascimento;
+            cliente.DataAtualizacao = DateTime.Now;
+
+            return cliente;
+        }
+    }
+
+    public static Cliente Remover(Cliente cliente)
+    {
+        if (cliente == null)
+        {
+            throw new ArgumentNullException(nameof(cliente), "O cliente não pode ser nulo");
+        }
+
+        else
+        {
+            cliente.DataDelecao = DateTime.Now;
+            cliente.Ativo = false;
+
+            return cliente;
+        }
+    }
+
     public override string ToString() // estilização do retorno do cliente
     {
         string status = Ativo ? "Sim" : "Não";
