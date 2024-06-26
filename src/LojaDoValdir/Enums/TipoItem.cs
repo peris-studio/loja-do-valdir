@@ -5,7 +5,7 @@ public enum TipoItem
     AlimentosBasicos,
     FrutasVegetais,
     Carnes,
-    Latícinios,
+    Laticinios,
     LimpezaDomestica,
     LimpezaPessoal,
     CuidadosDomesticos,
