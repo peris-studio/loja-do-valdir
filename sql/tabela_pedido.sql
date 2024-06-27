@@ -15,7 +15,7 @@ CREATE TABLE public.Pedido (
 	ContatoId UUID NOT NULL,
 	CONSTRAINT FK_Contato FOREIGN KEY (ContatoId) REFERENCES public.Contato(Id),
 	UsuarioId UUID NOT NULL,
-	CONSTRAINT FK_Usuario FOREIGN KEY (UsuarioId) REFERENCES public.Usuario(Id),
+	CONSTRAINT FK_Usuario FOREIGN KEY (UsuarioId) REFERENCES public.Usuario(Id)
 );
 
 INSERT INTO public.Pedido (Id, Status, PrevisaoEntrega, DataCriacao, Ativo, ClienteId, EnderecoId, ContatoId, UsuarioId)
