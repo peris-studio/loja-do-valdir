@@ -1,5 +1,3 @@
--- Script tabela Cliente
-
 CREATE TABLE public.Cliente (
     Id UUID PRIMARY KEY,  -- UUID para representar o Id como GUID
     Nome VARCHAR(20) NOT NULL,
@@ -13,7 +11,6 @@ CREATE TABLE public.Cliente (
     Ativo BOOLEAN NOT NULL
 );
 
--- Inserção de dados de exemplo para a tabela Cliente
 INSERT INTO public.Cliente (Id, Nome, Sobrenome, Idade, Sexo, DataNascimento, DataCriacao, Ativo)
 VALUES
     ('84bae1d3-6463-4e05-958b-3e531038eea3', 'Kaique Antonio', 'Silva', 30, 'M', '1994-05-10', CURRENT_TIMESTAMP, TRUE),

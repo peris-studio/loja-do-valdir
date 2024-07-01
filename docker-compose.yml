@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  lojadovaldir:
+    image: lojadovaldir
+    build:
+      context: .
+      dockerfile: src/LojaDoValdir/Dockerfile
