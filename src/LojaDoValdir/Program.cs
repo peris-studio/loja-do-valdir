@@ -270,7 +270,7 @@ app.MapDelete("/api/endereco/remover/{id}", (Guid id) =>
 List<Item> listaItens = new List<Item>
 {
     Item.Inserir("Leite Fermentado Yakult", "80g", "O Leite Fermentado Yakult é um alimento à base de leite desnatado, fermentado por lactobacilo selecionado, o exclusivo probiótico Lactobacillus casei Shirota, que resiste à acidez do estômago e chega vivo em grande quantidade ao intestino. A ingestão regular deste lactobacilo, juntamente com uma alimentação equilibrada, pode contribuir com a saúde do trato gastrointestinal.",
-                5.90, TipoItem.Latícinios, true, 40, 10), // Id = Guid.Parse("61ff80c6-e0f8-4464-9b46-cedc817b2fce"),
+                5.90, TipoItem.Laticinios, true, 40, 10), // Id = Guid.Parse("61ff80c6-e0f8-4464-9b46-cedc817b2fce"),
     Item.Inserir("Pão Francês", "", "Fresco e Crocante", 0.50, TipoItem.Padaria, true, 100, 0), //Id = Guid.Parse("e161fbad-57f0-4e90-95ae-d99a01998bcc"),
     Item.Inserir("Maçã Gala", "A variar", "Maçã doce e suculente, rica em fibras e vitaminas.",
                 1.29, TipoItem.FrutasVegetais, true, 13, 0) //Id = Guid.Parse("2fbfc5bc-a680-4e62-bf6c-1a41a1e08d1c"),
