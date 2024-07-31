@@ -1,4 +1,4 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿var builder = WebApplication.CreateSlimBuilder(args);
 
 // adicionando swagger
 builder.Services.AddEndpointsApiExplorer();
@@ -9,6 +9,7 @@ builder.Services.AddSwaggerGen(c =>
 
 // pipeline
 var app = builder.Build();
+
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
@@ -680,6 +681,5 @@ app.MapDelete("/api/usuario/remover/{id}", (Guid id) =>
 
     return Results.Ok(new { mensagem = "Usuário removido com sucesso!", usuario });
 }).WithTags(new[] { "Usuário" });
-
 
 app.Run();

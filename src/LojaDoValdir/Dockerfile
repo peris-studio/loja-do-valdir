@@ -1,37 +1,21 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-
 LABEL maintainer "Hisllaylla Kezia"
-
-USER app
 WORKDIR /app
 EXPOSE 8080
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-    clang zlib1g-dev
-    
-ARG BUILD_CONFIGURATION=Release
-
 WORKDIR /src
-
 COPY ["src/LojaDoValdir/LojaDoValdir.csproj", "src/LojaDoValdir/"]
-
-RUN dotnet restore "./src/LojaDoValdir/./LojaDoValdir.csproj" -p:Configuration=${BUILD_CONFIGURATION}
+RUN dotnet restore "src/LojaDoValdir/LojaDoValdir.csproj"
 
 COPY . .
-
 WORKDIR "/src/src/LojaDoValdir"
+RUN dotnet build "LojaDoValdir.csproj" -c Release -o /app/build
 
 FROM build AS publish
+RUN dotnet publish "LojaDoValdir.csproj" -c Release -o /app/publish
 
-RUN dotnet publish -r linux-arm64 "./LojaDoValdir.csproj" --no-restore -c $BUILD_CONFIGURATION -o /app/publish
-
-FROM mcr.microsoft.com/dotnet/runtime-deps:8.0 AS final
-
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
-EXPOSE 8080
-
 COPY --from=publish /app/publish .
-ENTRYPOINT ["./LojaDoValdir"]
+ENTRYPOINT ["dotnet", "LojaDoValdir.dll"]

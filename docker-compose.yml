@@ -6,3 +6,5 @@ services:
     build:
       context: .
       dockerfile: src/LojaDoValdir/Dockerfile
+    ports:
+      - "5050:8080"
