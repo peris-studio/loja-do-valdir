@@ -1,24 +1,33 @@
-# Etapa base do runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+
+LABEL maintainer "Hisllaylla Kezia"
+
+USER app
 WORKDIR /app
 EXPOSE 8080
 
-# Etapa de build
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /LojaDoValdir
-COPY ["LojaDoValdir/LojaDoValdir.csproj", "LojaDoValdir"]
-RUN dotnet restore "LojaDoValdir/LojaDoValdir.csproj"
+
+ARG BUILD_CONFIGURATION=Release
+
+WORKDIR /src
+
+COPY ["src/LojaDoValdir/LojaDoValdir.csproj", "src/LojaDoValdir/"]
+
+RUN dotnet restore "./src/LojaDoValdir/./LojaDoValdir.csproj" -p:Configuration=${BUILD_CONFIGURATION}
+
 COPY . .
 
-WORKDIR /LojaDoValdir
-RUN dotnet build "LojaDoValdir.csproj" -c Release -o /app/build
+WORKDIR "/src/src/LojaDoValdir"
 
-# Etapa de publicação
 FROM build AS publish
-RUN dotnet publish "LojaDoValdir.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
-# Etapa final
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+RUN dotnet publish -r linux-arm64 "./LojaDoValdir.csproj" --no-restore -c $BUILD_CONFIGURATION -o /app/publish
+
+FROM mcr.microsoft.com/dotnet/runtime-deps:8.0 AS final
+
 WORKDIR /app
+EXPOSE 8080
+
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "LojaDoValdir.dll"]
+ENTRYPOINT ["./LojaDoValdir"]

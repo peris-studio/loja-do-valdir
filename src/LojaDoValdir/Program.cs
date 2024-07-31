@@ -1,7 +1,4 @@
-﻿using LojaDoValdir.Models;
-using YamlDotNet.Serialization.ObjectGraphVisitors;
-
-var builder = WebApplication.CreateBuilder(args);
+﻿var builder = WebApplication.CreateBuilder(args);
 
 // adicionando swagger
 builder.Services.AddEndpointsApiExplorer();
