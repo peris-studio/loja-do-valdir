@@ -1,10 +1,35 @@
-version: '3.9'
-name: "lojadovaldir"
+version: '3.8'
 
 services:
-  webapi1: &webapi1
+  loja-do-valdir:
     build:
       context: .
-      dockerfile: src/LojaDoValdir/Dockerfile
+      dockerfile: src/Dockerfile  # Caminho para o Dockerfile dentro de src
+    image: loja-valdir:latest
+    container_name: loja-do-valdir
     ports:
-      - "5050:8080"
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - loja-network
+
+  db:
+    image: postgres:13
+    container_name: loja-db
+    environment:
+      POSTGRES_DB: loja_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - loja-network
+
+networks:
+  loja-network:
+    driver: bridge
+
+volumes:
+  db-data:
+    driver: local
