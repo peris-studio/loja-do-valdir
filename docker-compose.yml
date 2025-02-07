@@ -1,8 +1,33 @@
-version: '3.4'
-
 services:
-  lojadovaldir:
-    image: lojadovaldir
+  loja-do-valdir:
     build:
       context: .
-      dockerfile: src/LojaDoValdir/Dockerfile
+      dockerfile: src/Dockerfile
+    image: loja-valdir:latest
+    container_name: loja-do-valdir
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - loja-network  # Adicionando a rede aqui
+
+  db:
+    image: postgres:13
+    container_name: loja-db
+    environment:
+      POSTGRES_DB: loja-db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - loja-network
+
+networks:
+  loja-network:
+    driver: bridge
+
+volumes:
+  db-data:
+    driver: local
