@@ -2,7 +2,7 @@ services:
   loja-do-valdir:
     build:
       context: .
-      dockerfile: src/Dockerfile
+      dockerfile: src/LojaDoValdir/Dockerfile
     image: loja-valdir:latest
     container_name: loja-do-valdir
     ports:
