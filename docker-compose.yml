@@ -10,17 +10,20 @@ services:
     depends_on:
       - db
     networks:
-      - loja-network  # Adicionando a rede aqui
+      - loja-network
 
   db:
-    image: postgres:13
+    image: postgres
+    hostname: db # nome fixo do container dentro da rede
     container_name: loja-db
+    restart: always # serve para reiniciar automaticamente caso pare
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - ./db-init:/docker-entrypoint-initdb.d
     environment:
       POSTGRES_DB: loja-db
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
-    volumes:
-      - db-data:/var/lib/postgresql/data
     networks:
       - loja-network
 
