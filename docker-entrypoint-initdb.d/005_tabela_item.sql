@@ -16,8 +16,6 @@ CREATE TABLE public.Item (
 	Ativo BOOLEAN NOT NULL
 );
 
-select * from public.Item
-
 INSERT INTO public.Item (Id, Nome, Peso, Descricao, Preco, TipoItem, ItemEmEstoque, QuantidadeUnidade, QuantidadeFardo, DataCriacao, Ativo)
 VALUES
 

@@ -1,4 +1,4 @@
-   CREATE TABLE public.Contato (
+CREATE TABLE public.Contato (
 	Id UUID PRIMARY key,
 	CodigoDDI VARCHAR(5) NOT NULL,
 	CodigoDDD CHAR(2) NOT NULL,
