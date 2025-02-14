@@ -7,7 +7,7 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new() { Title = "LojaDoValdir", Version = "v1" });
 });
 
-// 🔥 Adicionando serviço de Health Checks
+// Adicionando serviço de Health Checks
 builder.Services.AddHealthChecks();
 
 // criando a aplicação
@@ -23,8 +23,7 @@ app.UseSwaggerUI(c =>
 
 app.UseHttpsRedirection();
 
-// Registrando o Health Check corretamente
-app.MapHealthChecks("/healthz");
+app.MapHealthChecks("/healthcheck");
 
 // registrando os módulos de endpoints
 app.MapClienteEndpoints();
